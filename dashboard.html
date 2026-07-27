@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Teacher Dashboard — Balvaidnyanik Practice</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2f52d8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%93%8A</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<header class="site-header no-print">
+  <div class="wrap bar">
+    <a class="logo" href="index.html">
+      <span class="mark" aria-hidden="true">&#9883;</span>
+      <span class="txt">Balvaidnyanik Practice<small>Teacher dashboard</small></span>
+    </a>
+    <span class="spacer"></span>
+    <button class="btn btn-ghost hidden" id="refreshBtn">Refresh</button>
+    <button class="btn btn-ghost hidden" id="csvBtn">Download CSV</button>
+    <button class="btn btn-ghost hidden" id="logoutBtn">Lock</button>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ------------------------------------------------------ gate -->
+  <section id="gate" class="panel mt" style="max-width:520px;margin-left:auto;margin-right:auto">
+    <h1>Teacher access</h1>
+    <p class="muted small">
+      Enter the passcode printed by the <code>setUp</code> function when you
+      deployed the Apps Script. Students do not need it.
+    </p>
+    <form id="gateForm">
+      <div class="field">
+        <label for="pass">Passcode</label>
+        <input type="password" id="pass" autocomplete="current-password" required>
+        <div class="err" id="err-pass">That passcode was not accepted.</div>
+      </div>
+      <button class="btn btn-primary btn-block" id="gateBtn" type="submit">Unlock</button>
+    </form>
+    <div id="gateNote" class="note note-warn mt hidden">
+      <p class="mb0">
+        This site is not linked to a results sheet yet. Follow
+        <a href="https://github.com/jitendraphand/homibhabha/blob/main/apps-script/README.md">the setup guide</a>
+        and paste the Web App URL into <code>assets/js/config.js</code>.
+      </p>
+    </div>
+  </section>
+
+  <!-- --------------------------------------------------- dashboard -->
+  <div id="board" class="hidden">
+
+    <section class="hero" style="padding-bottom:8px">
+      <h1>Class results</h1>
+      <p class="lede" id="boardSub">&nbsp;</p>
+    </section>
+
+    <div class="facts" id="summary"></div>
+
+    <section class="panel">
+      <div class="row" style="margin-bottom:14px">
+        <div class="field" style="margin:0;flex:1 1 190px">
+          <label for="fDivision">Division</label>
+          <select id="fDivision"><option value="">All divisions</option></select>
+        </div>
+        <div class="field" style="margin:0;flex:1 1 190px">
+          <label for="fTest">Test</label>
+          <select id="fTest"><option value="">All tests</option></select>
+        </div>
+        <div class="field" style="margin:0;flex:2 1 240px">
+          <label for="fSearch">Search by name or roll number</label>
+          <input type="text" id="fSearch" placeholder="e.g. Aarav or 24">
+        </div>
+      </div>
+
+      <div class="table-scroll">
+        <table class="data" id="resultsTable">
+          <thead>
+            <tr>
+              <th data-sort="rank">#</th>
+              <th data-sort="Full Name">Name</th>
+              <th data-sort="Roll No">Roll</th>
+              <th data-sort="Division">Div</th>
+              <th data-sort="Score">Score</th>
+              <th data-sort="Percent">%</th>
+              <th data-sort="Correct">Right</th>
+              <th data-sort="Wrong">Wrong</th>
+              <th data-sort="Not Attempted">Blank</th>
+              <th data-sort="Time Taken (s)">Time</th>
+              <th data-sort="Tab Switches">Tab&nbsp;sw.</th>
+              <th data-sort="Recorded At">Submitted</th>
+            </tr>
+          </thead>
+          <tbody id="resultsBody"></tbody>
+        </table>
+      </div>
+      <p class="small muted mt mb0" id="tableNote"></p>
+    </section>
+
+    <section class="panel">
+      <h2>Questions the class found hardest</h2>
+      <p class="small muted">
+        Ranked by the percentage of students who got them right. Anything under
+        50% is worth going over on the board.
+      </p>
+      <div class="table-scroll">
+        <table class="data" id="analysisTable">
+          <thead>
+            <tr>
+              <th>Question</th><th>Topic</th><th>Attempts</th>
+              <th>Correct</th><th>Blank</th><th>% correct</th>
+            </tr>
+          </thead>
+          <tbody id="analysisBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>Topic-wise performance across the class</h2>
+      <div id="topicBars"></div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap"><p class="mb0">The passcode is checked by the Apps Script, not by this page. Results never leave your Google account.</p></div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/data/questions-sound.js"></script>
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Practice Test — Sound</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#2f52d8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%94%AC</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+
+<!-- ============================================================ EXAM -->
+<div id="examView">
+
+  <header class="exam-bar no-print">
+    <div class="wrap bar">
+      <div class="who">
+        <strong id="barName">&nbsp;</strong>
+        <span id="barMeta">&nbsp;</span>
+      </div>
+      <span class="spacer"></span>
+      <div class="timer" id="timer" role="timer" aria-live="off" aria-atomic="true">
+        <span aria-hidden="true">&#9201;</span><span id="timerText">90:00</span>
+      </div>
+      <button class="btn btn-primary" id="submitBtn">Submit paper</button>
+    </div>
+    <div class="progress"><i id="progressBar" style="width:0%"></i></div>
+  </header>
+
+  <main class="wrap exam-layout">
+
+    <section class="panel qcard" aria-live="polite">
+      <div class="qhead">
+        <!-- No topic or difficulty label here on purpose: the real paper
+             does not tell you which chapter a question comes from, and
+             either label would be a hint. Both appear in the review. -->
+        <span class="qnum" id="qNum">Question 1</span>
+        <span class="spacer"></span>
+        <span class="chip" id="qMarkedChip" hidden>Marked for review</span>
+      </div>
+
+      <p class="qtext" id="qText"></p>
+      <div class="options" id="options" role="radiogroup" aria-label="Answer options"></div>
+
+      <div class="qnav">
+        <button class="btn btn-ghost" id="prevBtn">&larr; Previous</button>
+        <button class="btn btn-ghost" id="clearBtn">Clear answer</button>
+        <button class="btn btn-mark" id="markBtn">Mark for review</button>
+        <span class="spacer"></span>
+        <button class="btn btn-primary" id="nextBtn">Next &rarr;</button>
+      </div>
+    </section>
+
+    <aside class="panel palette no-print">
+      <h3>Question palette</h3>
+      <div class="pal-grid" id="palette"></div>
+      <div class="legend">
+        <div><i class="a"></i> Answered</div>
+        <div><i class="m"></i> Marked for review</div>
+        <div><i></i> Not answered</div>
+      </div>
+      <div class="counts">
+        <div><b id="cAnswered">0</b> Answered</div>
+        <div><b id="cLeft">100</b> Remaining</div>
+      </div>
+    </aside>
+
+  </main>
+</div>
+
+<!-- ========================================================== RESULT -->
+<div id="resultView" class="hidden">
+
+  <header class="site-header no-print">
+    <div class="wrap bar">
+      <a class="logo" href="index.html">
+        <span class="mark" aria-hidden="true">&#9883;</span>
+        <span class="txt">Balvaidnyanik Practice<small>Result</small></span>
+      </a>
+      <span class="spacer"></span>
+      <span class="sync" id="syncStatus">&nbsp;</span>
+      <button class="btn btn-ghost" onclick="window.print()">Print</button>
+      <a class="btn btn-primary" href="index.html">Done</a>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="panel score-hero">
+      <div class="score-ring" id="scoreRing">
+        <div class="inner">
+          <span class="pct" id="scorePct">0%</span>
+          <span class="of" id="scoreRaw">0 / 100</span>
+        </div>
+      </div>
+      <div><span class="band" id="scoreBand"></span></div>
+      <h1 id="resultName">&nbsp;</h1>
+      <p class="muted small mb0" id="resultMeta">&nbsp;</p>
+
+      <div class="stat-row">
+        <div class="stat ok"><b id="sCorrect">0</b><span>Correct</span></div>
+        <div class="stat bad"><b id="sWrong">0</b><span>Wrong</span></div>
+        <div class="stat skip"><b id="sSkipped">0</b><span>Not attempted</span></div>
+        <div class="stat"><b id="sTime">0</b><span>Time taken</span></div>
+        <div class="stat"><b id="sAccuracy">0%</b><span>Accuracy</span></div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>How you did, topic by topic</h2>
+      <p class="small muted">Anything below 60% is worth another read before the exam.</p>
+      <div id="topicBars"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Where to put your effort next</h2>
+      <div id="advice"></div>
+    </section>
+
+    <section class="panel">
+      <h2>Answers and explanations</h2>
+      <div class="filters no-print" id="revFilters">
+        <button class="btn btn-ghost active" data-filter="all">All 100</button>
+        <button class="btn btn-ghost" data-filter="wrong">Got wrong</button>
+        <button class="btn btn-ghost" data-filter="skipped">Not attempted</button>
+        <button class="btn btn-ghost" data-filter="correct">Got right</button>
+      </div>
+      <div id="review"></div>
+    </section>
+
+  </main>
+
+  <footer class="site-footer">
+    <div class="wrap"><p class="mb0" id="footNote"></p></div>
+  </footer>
+</div>
+
+<!-- =================================================== SUBMIT MODAL -->
+<div class="modal-back" id="submitModal" role="dialog" aria-modal="true" aria-labelledby="smTitle">
+  <div class="modal">
+    <h2 id="smTitle">Submit your paper?</h2>
+    <div id="smBody"></div>
+    <div class="row mt">
+      <button class="btn btn-primary" id="smConfirm">Yes, submit</button>
+      <button class="btn btn-ghost" id="smCancel">Go back</button>
+    </div>
+  </div>
+</div>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/data/questions-sound.js"></script>
+<script src="assets/js/exam.js"></script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Homi Bhabha Balvaidnyanik — Std 9 Practice Tests</title>
+<meta name="description" content="Practice tests for the Dr. Homi Bhabha Balvaidnyanik Competition, Standard 9. Test 1: Sound — 100 MCQs in 90 minutes.">
+<meta name="theme-color" content="#2f52d8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>%F0%9F%94%AC</text></svg>">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#start">Skip to the start form</a>
+
+<header class="site-header">
+  <div class="wrap bar">
+    <a class="logo" href="index.html">
+      <span class="mark" aria-hidden="true">&#9883;</span>
+      <span class="txt">
+        Balvaidnyanik Practice
+        <small>Dr. Homi Bhabha Competition &middot; Standard 9</small>
+      </span>
+    </a>
+    <span class="spacer"></span>
+    <a class="btn btn-ghost" href="syllabus.html">Syllabus</a>
+    <a class="btn btn-ghost no-print" href="dashboard.html">Teacher</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <section class="hero">
+    <span class="eyebrow">Practice Test 1</span>
+    <h1>Sound</h1>
+    <p class="lede">
+      One hundred multiple-choice questions on the Sound chapter, set in the
+      same pattern as the first round of the Dr.&nbsp;Homi Bhabha Balvaidnyanik
+      Competition. Based on the Maharashtra Board Std&nbsp;9 syllabus, with
+      material from CBSE and CISCE books folded in.
+    </p>
+  </section>
+
+  <div class="facts">
+    <div class="fact"><span class="n">100</span><span class="l">Questions</span></div>
+    <div class="fact"><span class="n">90</span><span class="l">Minutes</span></div>
+    <div class="fact"><span class="n">1</span><span class="l">Mark each</span></div>
+    <div class="fact"><span class="n">0</span><span class="l">Negative marking</span></div>
+  </div>
+
+  <div class="panel" id="start">
+    <h2>Before you begin</h2>
+    <p class="muted small">Fill in your details exactly as they appear in the school register.</p>
+
+    <form id="startForm" novalidate autocomplete="off">
+      <div class="grid-2">
+        <div class="field">
+          <label for="firstName">First name</label>
+          <input type="text" id="firstName" name="firstName" required
+                 autocomplete="given-name" maxlength="30" placeholder="e.g. Aarav">
+          <div class="err" id="err-firstName">Please enter your first name.</div>
+        </div>
+        <div class="field">
+          <label for="lastName">Last name</label>
+          <input type="text" id="lastName" name="lastName" required
+                 autocomplete="family-name" maxlength="30" placeholder="e.g. Deshmukh">
+          <div class="err" id="err-lastName">Please enter your last name.</div>
+        </div>
+      </div>
+
+      <div class="grid-2">
+        <div class="field">
+          <label for="rollNo">Roll number</label>
+          <input type="text" id="rollNo" name="rollNo" required
+                 inputmode="numeric" maxlength="10" placeholder="e.g. 24">
+          <div class="err" id="err-rollNo">Please enter your roll number.</div>
+        </div>
+        <div class="field">
+          <label for="division">Division</label>
+          <select id="division" name="division" required>
+            <option value="">Select division</option>
+            <option>A</option><option>B</option><option>C</option>
+            <option>D</option><option>E</option><option>F</option>
+          </select>
+          <div class="err" id="err-division">Please select your division.</div>
+        </div>
+      </div>
+
+      <div class="note note-warn mt">
+        <p><strong>Read the instructions carefully.</strong></p>
+        <ul class="rules">
+          <li>The paper has <strong>100 questions</strong> and you get <strong>90 minutes</strong>. The clock starts the moment you press Start.</li>
+          <li>Each question carries <strong>1 mark</strong>. There is <strong>no negative marking</strong>, so never leave a question blank &mdash; make your best guess.</li>
+          <li>Every question has exactly one correct option.</li>
+          <li>You may move freely between questions and change an answer any time before you submit.</li>
+          <li>Use <strong>Mark for review</strong> to flag a question you want to come back to.</li>
+          <li>The paper is <strong>submitted automatically</strong> when the time runs out.</li>
+          <li>Your answers are saved in this browser as you go, so a refresh will not wipe them.</li>
+          <li>Keep the exam tab open. Switching tabs is recorded and shown to your teacher.</li>
+        </ul>
+      </div>
+
+      <div class="mt">
+        <button type="submit" class="btn btn-primary btn-lg btn-block" id="startBtn">
+          Start the test &nbsp;&rarr;
+        </button>
+      </div>
+    </form>
+
+    <div id="resumeBox" class="note note-ok mt hidden">
+      <p class="mb0">
+        <strong>You have an unfinished attempt.</strong>
+        <span id="resumeWho"></span><br>
+        <span class="small" id="resumeLeft"></span>
+      </p>
+      <div class="row mt">
+        <a class="btn btn-primary" href="exam.html">Resume that attempt</a>
+        <button type="button" class="btn btn-ghost" id="discardBtn">Discard and start fresh</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="panel" id="historyPanel" hidden>
+    <h2>Your earlier attempts on this device</h2>
+    <div class="table-scroll">
+      <table class="data">
+        <thead>
+          <tr><th>Date</th><th>Test</th><th>Score</th><th>Percent</th><th>Time taken</th></tr>
+        </thead>
+        <tbody id="historyBody"></tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="panel">
+    <h2>What the real exam looks like</h2>
+    <p class="small muted">
+      The Dr.&nbsp;Homi Bhabha Balvaidnyanik Competition is conducted by the
+      Greater Bombay Science Teachers' Association for Standards&nbsp;6 and&nbsp;9.
+      Round&nbsp;1 is a written multiple-choice paper of 100&nbsp;marks in 90&nbsp;minutes
+      covering Physics, Chemistry, Biology and general science awareness, with
+      no negative marking. Students who clear it go on to a practical round and
+      then to a project and interview. Questions follow the Maharashtra State
+      Board science textbooks most closely, and reading the corresponding CBSE
+      and CISCE chapters for Standards&nbsp;6 to&nbsp;10 fills the remaining gaps.
+    </p>
+    <p class="small mb0"><a href="syllabus.html">See the full syllabus and topic checklist &rarr;</a></p>
+  </div>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <p class="mb0">
+      Practice material prepared for Standard&nbsp;9 students. Not an official
+      publication of the Greater Bombay Science Teachers' Association.
+      <span id="storeNote"></span>
+    </p>
+  </div>
+</footer>
+
+<script src="assets/js/config.js"></script>
+<script src="assets/js/core.js"></script>
+<script src="assets/data/questions-sound.js"></script>
+<script src="assets/js/start.js"></script>
+</body>
+</html>
