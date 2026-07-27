@@ -19,11 +19,21 @@ cannot run server code, but Apps Script can, and it is free.
 
 ## Part 1 — Publish the site
 
+> **This step cannot be automated and must be done by you once.** Creating a
+> Pages site requires admin rights on the repository, which neither a
+> workflow's `GITHUB_TOKEN` nor a GitHub App integration is ever granted.
+> Until you do it, every deploy run fails at `actions/configure-pages` with
+> *"Get Pages site failed … Not Found"*.
+
 1. Get the code onto `main` in `jitendraphand/homibhabha`.
 2. In the repository, go to **Settings → Pages**.
 3. Under **Build and deployment → Source**, choose **GitHub Actions**.
-4. That's it. `.github/workflows/pages.yml` runs on every push to `main`: it
-   validates the question bank first, then publishes.
+4. Go to the **Actions** tab, open the most recent **Deploy to GitHub Pages**
+   run, and press **Re-run all jobs**. (Switching the setting does not
+   retrigger a build by itself.)
+
+From then on `.github/workflows/pages.yml` runs on every push to `main`: it
+validates the question bank first, then publishes.
 
 Your site appears at:
 

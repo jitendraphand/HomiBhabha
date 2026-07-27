@@ -27,12 +27,13 @@ jobs:
       - name: Check the question bank before publishing
         run: node scripts/validate-questions.js
 
-      # enablement: true turns Pages on for the repository the first time this
-      # runs, so there is no manual visit to Settings -> Pages. It is a no-op
-      # once Pages is already enabled.
+      # Pages must already be switched on for the repository, under
+      # Settings -> Pages -> Source -> GitHub Actions. That is a one-time
+      # manual step: creating a Pages site needs admin rights on the repo,
+      # which the workflow's GITHUB_TOKEN never has, so `enablement: true`
+      # here cannot do it for you (it fails with "Resource not accessible
+      # by integration").
       - uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       - uses: actions/upload-pages-artifact@v3
         with:
