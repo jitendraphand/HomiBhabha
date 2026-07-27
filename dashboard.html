@@ -41,6 +41,15 @@
       </div>
       <button class="btn btn-primary btn-block" id="gateBtn" type="submit">Unlock</button>
     </form>
+
+    <div class="row mt">
+      <button type="button" class="btn btn-ghost" id="pingBtn">Check connection</button>
+      <span class="sync" id="pingResult" hidden></span>
+    </div>
+    <p class="small muted mb0 mt">
+      Use this before a class sits the test: it confirms the site can reach
+      your Google Sheet without needing the passcode.
+    </p>
     <div id="gateNote" class="note note-warn mt hidden">
       <p class="mb0">
         This site is not linked to a results sheet yet. Follow

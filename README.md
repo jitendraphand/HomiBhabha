@@ -15,6 +15,7 @@ passcode-protected teacher dashboard.
 | `index.html` | Instructions and the student details form |
 | `exam.html` | The paper itself, and the report shown after submitting |
 | `dashboard.html` | Teacher view of every attempt (passcode required) |
+| `DEPLOY.md` | GitHub Pages setup and where the Sheet link goes |
 | `syllabus.html` | Exam pattern, syllabus, and a Sound revision checklist |
 
 Everything is plain HTML, CSS and JavaScript. There is no build step, no
@@ -57,6 +58,9 @@ Question coverage, from `assets/data/questions-sound.js`:
 
 ## Setting it up
 
+**[DEPLOY.md](DEPLOY.md) is the full walkthrough** — publishing to GitHub
+Pages, and exactly which file the Google Sheet link goes in. Summary:
+
 ### 1. Publish the site
 
 Push to `main`. The workflow in `.github/workflows/pages.yml` validates the
@@ -83,7 +87,12 @@ window.APP_CONFIG = {
 };
 ```
 
-Commit and push. That is the whole configuration.
+Commit and push. That is the whole configuration — there are no credentials,
+keys or service accounts to manage. The teacher passcode lives in the Apps
+Script's Script Properties and never reaches the browser.
+
+Press **Check connection** on the dashboard to confirm the link works before
+a class sits the test.
 
 Without a URL the site still works end to end — students get their full report
 — but nothing is recorded centrally.

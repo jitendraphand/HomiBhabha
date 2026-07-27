@@ -74,6 +74,37 @@
       });
   }
 
+  /* ------------------------------------------------ connection check
+     Answers "did I paste the URL in the right place?" without needing the
+     passcode, so it can be run before a class sits the test.            */
+  $("pingBtn").addEventListener("click", function () {
+    var out = $("pingResult");
+    out.hidden = false;
+    out.className = "sync pending";
+    out.textContent = "Checking…";
+
+    if (!HB.sheetsConfigured()) {
+      out.className = "sync fail";
+      out.textContent = "No URL in assets/js/config.js yet";
+      return;
+    }
+
+    HB.getJSON({ action: "ping" })
+      .then(function (data) {
+        if (data.keySet) {
+          out.className = "sync ok";
+          out.textContent = "Connected — passcode is set";
+        } else {
+          out.className = "sync fail";
+          out.textContent = "Connected, but no passcode — run setUp in the Apps Script editor";
+        }
+      })
+      .catch(function (err) {
+        out.className = "sync fail";
+        out.textContent = "Cannot reach the script (" + err.message + ")";
+      });
+  });
+
   $("logoutBtn").addEventListener("click", function () {
     sessionStorage.removeItem(HB.KEY.ADMIN);
     location.reload();
